@@ -25,7 +25,8 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
 
         return try {
             if (TextUtils.isEmpty(resourceUri)) {
-                Timber.e("Invalid input uri")
+                //i have error when i write Trimber
+                Log.e(TAG, "Invalid input uri")
                 throw IllegalArgumentException("Invalid input uri")
             }
 
@@ -39,6 +40,7 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
             val outputData = workDataOf(KEY_IMAGE_URI to outputUri.toString())
             Result.success(outputData)
         } catch (throwable: Throwable) {
+            Log.e(TAG, "Error applying blur")
             throwable.printStackTrace()
             Result.failure()
         }
